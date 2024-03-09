@@ -1,18 +1,13 @@
 public class Solution {
     public bool IsPalindrome(int x) {
-        int sum=0;
+        int sum=0,d=0;
         int t=x;
-        int d=0;
-        if(x<0)
-            return false;
-        while(t>=10)
+        while(t>0)
         {
             d=t%10;
             sum=(sum*10)+d;
-            t/=10;
-
+            t=t/10;
         }
-        sum=(sum*10)+t;
         return sum==x;
     }
 }
