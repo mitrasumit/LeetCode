@@ -10,13 +10,16 @@ public class Solution {
             }
         }
 
-        for(int i=0;i<nums.Length;i++)
-        {
-            if(Math.Abs(a)==nums[i])
-            {
-                return nums[i];
-            }
-        }
-        return a;
+        // for(int i=0;i<nums.Length;i++)
+        // {
+        //     if(Math.Abs(a)==nums[i])
+        //     {
+        //         return nums[i];
+        //     }
+        // }
+        if(a<0 && nums.Contains(Math.Abs(a)))
+            return Math.Abs(a);
+        else
+            return a;
     }
 }
