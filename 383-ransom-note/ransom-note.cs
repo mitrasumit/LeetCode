@@ -1,20 +1,31 @@
 public class Solution {
     public bool CanConstruct(string ransomNote, string magazine) {
         
-        List<char> r=new List<char>(ransomNote);
+       Dictionary<char,int> rn=new Dictionary<char,int>();
 
-        foreach(char m in magazine)
+       foreach(char c in ransomNote)
+       {
+        if(rn.ContainsKey(c))
+            rn[c]=rn[c]+1;
+         else
+            rn.Add(c,1);
+       }
+       foreach(char c in magazine)
+       {
+        if(rn.ContainsKey(c))
         {
-            if(r.Contains(m))
-            {   
-                r.Remove(m);
-                Console.WriteLine(r.Count);
+            rn[c]=rn[c]-1;
+           
+            if(rn[c]==0)
+            {              
+                rn.Remove(c);
             }
-            if(r.Count==0)
+            if(rn.Count==0)
             {
                 return true;
             }
         }
+    }
         return false;
     }
 }
