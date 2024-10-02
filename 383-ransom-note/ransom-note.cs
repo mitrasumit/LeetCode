@@ -1,31 +1,41 @@
 public class Solution {
     public bool CanConstruct(string ransomNote, string magazine) {
         
-       Dictionary<char,int> rn=new Dictionary<char,int>();
+        Dictionary<char,int> magazineLetter=new Dictionary<char,int>();
 
-       foreach(char c in ransomNote)
-       {
-        if(rn.ContainsKey(c))
-            rn[c]=rn[c]+1;
-         else
-            rn.Add(c,1);
-       }
-       foreach(char c in magazine)
-       {
-        if(rn.ContainsKey(c))
+        foreach(char character in magazine)
         {
-            rn[c]=rn[c]-1;
-           
-            if(rn[c]==0)
-            {              
-                rn.Remove(c);
-            }
-            if(rn.Count==0)
+            if(magazineLetter.ContainsKey(character))
             {
-                return true;
+                magazineLetter[character]=magazineLetter[character]+1;
+            }
+            else
+            {
+                magazineLetter.Add(character,1);
             }
         }
-    }
-        return false;
+
+        // foreach (KeyValuePair<char, int> kvp in magazineLetter)
+        // {
+    
+        //     Console.WriteLine(string.Format("Key = {0}, Value = {1}", kvp.Key, kvp.Value));
+        // }
+
+
+        foreach(char character in ransomNote)
+        {
+            if(magazineLetter.ContainsKey(character))
+            {
+                if(magazineLetter[character]<=0)
+                {
+                    return false;
+                }
+                else
+                    magazineLetter[character]=magazineLetter[character]-1;
+            }
+            else
+                return false;
+        }
+        return true;
     }
 }
