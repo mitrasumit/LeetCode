@@ -1,49 +1,63 @@
 public class Solution {
     public bool BackspaceCompare(string s, string t) {
         
-        int largerString=Math.Max(s.Length,t.Length);
-        string sr="";
-        string tr="";
+        int p1=s.Length-1;
+        int p2=t.Length-1;
 
-        if(largerString==0)
-            return true;
-
-        for(int i=0;i<largerString;i++)
+        while(p1>=0 || p2>=0)
         {
-            if(i<s.Length)
+            if(p1>=0 && s[p1]=='#' || p2>=0 && t[p2]=='#')
             {
-            if(s[i]=='#')
-            {
-                if(!string.IsNullOrEmpty(sr))
+                if(p1>=0 && s[p1]=='#')
                 {
-                    sr=sr.Remove(sr.Length-1);
+                    int backSpace=2;
+                    while(backSpace>0)
+                    {
+                        p1--;
+                        backSpace--;
+
+                        if(p1>=0 && s[p1]=='#')
+                        {
+                            backSpace=backSpace+2;
+                        }
+                        
+                    }
                 }
-            }
-            else
+
+                if(p2>=0 && t[p2]=='#')
                 {
-                    sr=sr+s[i];
+                    int backSpace=2;
+                    while(backSpace>0)
+                    {
+                        p2--;
+                        backSpace--;
+
+                        if(p2>=0 && t[p2]=='#')
+                        {
+                            backSpace=backSpace+2;
+                        }
+                        
+                    }
                 }
             }
 
-            if(i<t.Length)
-            {
-                if(t[i]=='#')
-            {
-                if(!string.IsNullOrEmpty(tr))
-                {
-                    tr=tr.Remove(tr.Length-1);
-                }
-            }
-            else
-            {
-                tr=tr+t[i];
-            }
-            }
+            if (p1 >= 0 && p2 >= 0)
+{
+    if (s[p1] != t[p2])
+    {
+        return false;
+    }
+}
+else if (p1 >= 0 || p2 >= 0)
+{
+    return false;
+}
+            
+            p1--;
+            p2--;
+
         }
-        if(sr==tr)
-            return true;
 
-        else
-            return false;   
+        return true;
     }
 }
