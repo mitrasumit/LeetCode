@@ -2,9 +2,6 @@ public class Solution {
     public int LengthOfLongestSubstring(string s) {
         int max=0;
         int maxCount=0;
-
-        if(s==" ")
-            return 1;
         
         if(s=="")
             return 0;
