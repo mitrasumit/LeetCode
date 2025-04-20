@@ -3,8 +3,8 @@ public class Solution {
         int max=0;
         int maxCount=0;
         
-        if(s=="")
-            return 0;
+        if(s.Length<=1)
+            return s.Length;
 
         Dictionary<char,int> isPresent=new Dictionary<char,int>();
 
