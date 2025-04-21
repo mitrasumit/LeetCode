@@ -1,37 +1,25 @@
 public class Solution {
     public int LengthOfLongestSubstring(string s) {
-        int max=0;
-        int maxCount=0;
-        
-        if(s.Length<=1)
+        if (s.Length <= 1)
             return s.Length;
 
-        Dictionary<char,int> isPresent=new Dictionary<char,int>();
+        Dictionary<char, int> seenChar = new Dictionary<char, int>();
+        int longest = 0;
+        int left = 0;
 
-        for(int i=0;i<s.Length;i++)
-        {
-            for(int j=i;j<s.Length;j++)
-            {
-                if(isPresent.ContainsKey(s[j]))
-                {
-                    isPresent.Clear();
-                    break;
-                }
-                else
-                {
-                   
-                    isPresent.Add(s[j],1);
-                    max=max+1;
+        for (int right = 0; right < s.Length; right++) {
+            char currentChar = s[right];
+
+            if (seenChar.TryGetValue(currentChar, out int prevSeen)) {
+                if (prevSeen >= left) {
+                    left = prevSeen + 1;
                 }
             }
 
-            if(maxCount<max)
-            {
-                maxCount=max;
-            }
-            max=0;
+            seenChar[currentChar] = right;
+            longest = Math.Max(longest, right - left + 1);
         }
 
-        return maxCount;
+        return longest;
     }
 }
