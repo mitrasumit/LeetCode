@@ -8,7 +8,6 @@ public class Solution {
         string pattern = @"[^A-Za-z0-9]";
          s =  (System.Text.RegularExpressions.Regex.Replace(s, pattern, string.Empty)).ToLower();
 
-        Console.WriteLine(s);
 
         int right=s.Length-1;
         int left=0;
