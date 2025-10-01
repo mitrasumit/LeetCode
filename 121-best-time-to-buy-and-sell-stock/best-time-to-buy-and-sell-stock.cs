@@ -1,21 +1,20 @@
 public class Solution {
-    public int MaxProfit(int[] prices) {
+    public int MaxProfit(int[] prices) 
+    {
+        int i=0;
         int maxProfit=0;
-        int profit=0;
-        int minPrice=prices[0];
+        int minValue=prices[0];
 
-        for(int i=0;i<prices.Length;i++)
+        for(i=0;i<prices.Length;i++)
         {
-            if(minPrice>prices[i])
+            if(minValue>prices[i])
             {
-                minPrice=prices[i];
+                minValue=prices[i];
             }
 
-            profit=prices[i]-minPrice;
-
-            if(maxProfit<profit)
+            if(maxProfit<prices[i]-minValue)
             {
-                maxProfit=profit;
+                maxProfit=prices[i]-minValue;
             }
         }
         return maxProfit;
